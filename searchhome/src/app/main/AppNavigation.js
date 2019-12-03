@@ -9,9 +9,10 @@ import strings from './../../base/config/strings'
 
 import 
 {HomePage,
-ProductPage,
-CartPage,
-ProfilePage
+RoomatesPage,
+SearchPage,
+ProfilePage,
+ChatPage
  } from '../pages'
 
 import { AppHeader} from './../common/controls/header'
@@ -32,66 +33,15 @@ class AppNavigation extends Component {
 }
 export default AppNavigation;
 
-class WelcomeScreen extends Component {
-    render() {
-        return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Button
-                    title="Login"
-                    onPress={() => this.props.navigation.navigate('Dashboard')}
-                />
-                <Button title="Sign Up" onPress={() => alert('button pressed')} />
-            </View>
-        );
-    }
-}
 
-class Notification extends Component {
-    render() {
-        return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text>Notification</Text>
-            </View>
-        );
-    }
-}
-
-class Settings extends Component {
-    render() {
-        return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text>Settings</Text>
-            </View>
-        );
-    }
-}
-
-// const ServiceBillDetailStack = createStackNavigator(
-//     {
-//         ServiceBillDetailInStack: ServiceBillDetailContainer,
-//         ProductSearchAndSelectInStack: ProductSearchAndSelectContainer,
-//         CameraRollPickerInStack: CameraRollPickerComponet
-//     },
-//     {
-//         defaultNavigationOptions: ({ navigation }) => {
-//             return {
-//                 header: null
-//             };
-//         }
-//     }
-// );
 
 const HomeStack = createStackNavigator(
     {
         Home: HomePage,
-        Product: ProductPage,
-        Cart:CartPage,
-        Profile:ProfilePage
-
-    
+       
     }
     ,{
-        defaultNavigationOptions: ({ navigation }) => {
+        defaultNavigationOptions: () => {
             return {
                 header: null
             };
@@ -99,14 +49,73 @@ const HomeStack = createStackNavigator(
     }
 );
 
-
-
-
-
-const DashboardTabNavigator = createMaterialTopTabNavigator(
+const RoomateStack = createStackNavigator(
     {
-        Home: {
-            screen: HomeStack,
+        Home: RoomatesPage,
+        
+
+    
+    }
+    // ,{
+    //     defaultNavigationOptions: () => {
+    //         return {
+    //             header: null
+    //         };
+    //     }
+    // }
+);
+const SearchStack = createStackNavigator(
+    {
+        Home: SearchPage,
+        
+
+    
+    }
+    // ,{
+    //     defaultNavigationOptions: () => {
+    //         return {
+    //             header: null
+    //         };
+    //     }
+    // }
+);
+const ChatStack = createStackNavigator(
+    {
+        Home: ChatPage,
+        
+    
+    }
+    // ,{
+    //     defaultNavigationOptions: () => {
+    //         return {
+    //             header: null
+    //         };
+    //     }
+    // }
+);
+const ProfileStack = createStackNavigator(
+    {
+        Home: ProfilePage,
+       
+
+    
+    }
+    // ,{
+    //     defaultNavigationOptions: () => {
+    //         return {
+    //             header: null
+    //         };
+    //     }
+    // }
+);
+
+
+
+
+const DashboardTabNavigator = createBottomTabNavigator(
+    {
+        PageHome: {
+            screen:HomeStack,
             navigationOptions: {
                 header:null,
                 tabBarLabel:strings.TAB_LABEL_HOME,
@@ -119,30 +128,41 @@ const DashboardTabNavigator = createMaterialTopTabNavigator(
             }
             
         },
-        Product: {
-            screen: HomeStack,
+        Roomates: {
+            screen:RoomateStack,
             navigationOptions: {
                 header:null,
-                tabBarLabel:strings.TAB_LABEL_PRODUCT,
+                tabBarLabel:strings.TAB_LABEL_ROOMATES,
                 tabBarIcon: ({ tintColor }) => (<Icon
-                    name={icons.product}
+                    name={icons.roomate}
                     color={tintColor}
                     size={24} />)
                 
             }
         },
-        Cart: {
-            screen: HomeStack,
+        Search: {
+            screen: SearchStack,
             navigationOptions: {
-                tabBarLabel:strings.TAB_LABEL_CART,
+                tabBarLabel:strings.TAB_LABEL_SEARCH,
                 tabBarIcon: ({ tintColor }) => (<Icon
-                    name={icons.cart}
+                    name={icons.search}
                     color={tintColor}
                     size={24} />)
             }
         },
+      Message: {
+            screen: ChatStack,
+            navigationOptions: {
+                tabBarLabel:strings.TAB_LABEL_MESSAGE,
+               
+                tabBarIcon: ({ tintColor }) => (<Icon
+                    name={icons.message}
+                    color={tintColor}
+                    size={24} />)   
+            }
+        },
         Profile: {
-            screen: HomeStack,
+            screen: ProfileStack,
             navigationOptions: {
                 tabBarLabel:strings.TAB_LABEL_PROFILE,
                
@@ -156,74 +176,40 @@ const DashboardTabNavigator = createMaterialTopTabNavigator(
     },
     {
         navigationOptions: () => {
-           const { routeName } = navigation.state.routes[navigation.state.index];
+           
             return {
-               header:<AppHeader/>
+               header:null
                
             }; 
         },
-        initialLayout :{height:60},
-        lazy:true,
+        initialLayout :{height:40},
+        //lazy:true,
         tabBarPosition:'bottom',
         tabBarOptions: {
             activeTintColor: colors.ICON_ACTIVE_COLOR,
             inactiveTintColor: colors.ICON_COLOR,
             style:{
                 backgroundColor:colors.WHITE,
-                height:75
+                height:60,
+                marginBottom:10
             },
             indicatorStyle:{
                 height:0
             },
             showIcon:true,
             swipeEnabled: true,
-            animationEnabled:true
+           animationEnabled:true
         }
     }
 );
 
-const DashboardStackNavigator = createStackNavigator(
-    {
-        DashboardTabNavigator: DashboardTabNavigator
-    },
-    {
-        defaultNavigationOptions: ({ navigation }) => {
-            return {
-            
-                header: null
-                
-            };
-        }
-    }
-);
-
-const AppDrawerNavigator = createDrawerNavigator({
-    Dashboard: {
-        screen: DashboardStackNavigator
-    },
-    DrawerSubScreen: {
-        screen: Notification
-    }
-});
-
-// const AppSwitchNavigator = createSwitchNavigator(
-//    {
-//     Welcome: { screen: WelcomeScreen },
-//     Dashboard: { screen: AppDrawerNavigator }
-//    }
-//     ,
-//     {
-//     //   initialRouteName: signedIn ? "Welcome" : "Dashboard"
-//     initialRouteName:"Dashboard"
-//     }
-// );
 
 
 
 
 
 
-const AppContainer = createAppContainer(DashboardStackNavigator);
+const AppContainer = createAppContainer(DashboardTabNavigator);
 
 const styles = StyleSheet.create({
     container: {

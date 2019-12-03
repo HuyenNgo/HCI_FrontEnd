@@ -1,6 +1,6 @@
 const colors={
     BLACK:'#000',
-    WHITE:'#FFF',
+    WHITE:'#FEFEFE',
     GRAY:'#808080',
     GREEN:'#008000',
     DODGER_BLUE:'#428AF8',
@@ -16,7 +16,7 @@ const colors={
 
     HEADER:'#000',
 
-    ICON_ACTIVE_COLOR:'tomato',
+    ICON_ACTIVE_COLOR:'#4877F8',
     ICON_COLOR:'gray',
 
 

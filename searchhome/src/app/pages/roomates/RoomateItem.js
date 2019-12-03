@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import {  ListItem, Thumbnail, Card, CardItem, Body,Left  } from 'native-base';
-const ProductItem = (params) => {
+const RoomateItem = (params) => {
     
     return (
     <ListItem thumbnail button={true}
@@ -20,4 +20,4 @@ const ProductItem = (params) => {
         </ListItem>
 )};
 
-export default ProductItem;
+export default RoomateItem;

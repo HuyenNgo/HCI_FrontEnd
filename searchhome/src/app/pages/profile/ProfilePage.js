@@ -12,7 +12,7 @@ export default class ProfilePage extends BaseComponent {
     return (
       
       <View>
-        <Text style={styles.containerStyle}> SettingPage </Text>
+        <Text > SettingPage </Text>
       </View>
     )
   }

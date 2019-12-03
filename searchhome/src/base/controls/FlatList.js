@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SafeAreaView, FlatList, RefreshControl, Text, View } from 'react-native';
+import { SafeAreaView, FlatList, RefreshControl, Text, View,ScrollView } from 'react-native';
 import baseStyle from './../styles/baseStyle'
 
 export default class FlatListCustom extends Component {
@@ -9,11 +9,11 @@ export default class FlatListCustom extends Component {
         return (<View><Text>renderItem</Text></View>)
     }
     render() {
-        const { loading, style, data, renderItem, footerComponent, onRefresh } = this.props
+        const { loading, style, data, renderItem, footerComponent, onRefresh,numColumns } = this.props
         //console.log(data)
         return (
             <SafeAreaView style={style ? style : baseStyle.flatListContainer}>
-
+            
                 <FlatList                    
                     refreshControl={
                         <RefreshControl
@@ -25,7 +25,12 @@ export default class FlatListCustom extends Component {
                     data={data?data:[]}
                     renderItem={renderItem ? renderItem : this.renderItemDefault}
                     ListFooterComponent={footerComponent}
+                    numColumns={numColumns?numColumns:1}
+                    onEndReachedThreshold={0.5}
+                    
+         // onEndReached={onRefresh}
                 />
+               
             </SafeAreaView>
         )
     }

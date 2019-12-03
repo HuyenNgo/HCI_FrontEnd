@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { StyleSheet,Text, View } from 'react-native'
-import  BaseComponent from "./../../../base/components/BaseComponent";
+import  BaseComponent from "../../../base/components/BaseComponent";
 
-export default class CartPage extends BaseComponent {
+export default class SearchPage extends BaseComponent {
     constructor(props) {
         super(props);
         
@@ -11,7 +11,7 @@ export default class CartPage extends BaseComponent {
     return (
       
       <View>
-        <Text style={styles.containerStyle}> Cart </Text>
+        <Text > Cart </Text>
       </View>
     )
   }

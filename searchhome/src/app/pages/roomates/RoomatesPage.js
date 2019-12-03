@@ -3,8 +3,8 @@ import { Text, View } from 'react-native'
 import  BaseComponent from "../../../base/components/BaseComponent";
 import { FlatList,ButtonLoadMore} from '../../../base/controls';
 import {  Container, ListItem, Thumbnail, Card, CardItem, Body,Left  } from 'native-base';
-import ProductItem from './ProductItem'
-export default class  ProductPage extends BaseComponent {
+import RoomateItem from './RoomateItem'
+export default class  RoomatesPage extends BaseComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,10 +17,14 @@ export default class  ProductPage extends BaseComponent {
                 pageCount: 2,
                
             },
-            isLoading:false
+            isLoading:false,
+           
             
         }
     }
+    componentDidMount(){
+        this.onRefresh()
+      }
     
     onLoadMore = (isAbleToLoadMore) => {
         if (isAbleToLoadMore) {
@@ -64,21 +68,8 @@ export default class  ProductPage extends BaseComponent {
         }
     }
     renderItem = ({ item }) => {
-        // return (<ListItem thumbnail button={true}
-        //     // style={{ height: 300 }}
-        //     onPress={() => console.log('getItemHandle')}
-        // >
-        //     <Left>
-        //         <Thumbnail square source={{
-        //             uri: item.avatar ? item.avatar : constants.NO_IMAGE_LINK
-        //         }} />
-        //     </Left>
-        //     <Body>
-        //         <Text>{item.name}</Text>
-        //         <Text note numberOfLines={1}>{item.price}</Text>
-        //     </Body>
-        // </ListItem>)
-        return(<ProductItem item={item} />)
+       
+        return(<RoomateItem item={item} />)
     }
 
 
@@ -94,6 +85,7 @@ export default class  ProductPage extends BaseComponent {
                     loading={isLoading}
                     data={mockData.items}
                     renderItem={this.renderItem}
+                   
                     footerComponent={<ButtonLoadMore
                         isAbleToLoadMore={isLoadMore}
                         loading={isLoading}

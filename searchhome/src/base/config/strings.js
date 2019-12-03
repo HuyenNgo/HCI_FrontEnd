@@ -1,8 +1,9 @@
 const strings={
-    TAB_LABEL_HOME:'Trang chủ',
-    TAB_LABEL_PRODUCT:'Sản phẩm',
-    TAB_LABEL_CART:'Giỏ hàng',
-    TAB_LABEL_PROFILE:'Tôi',
+    TAB_LABEL_HOME:'Home',
+    TAB_LABEL_ROOMATES:'Roomates',
+    TAB_LABEL_SEARCH:'Search',
+    TAB_LABEL_PROFILE:'Account',
+    TAB_LABEL_MESSAGE:'Messages',
     HEADER_CHANGEPASSWORD_TITLE:'Đổi mật khẩu',
     HEADER_HOME_TITLE:'Trang chủ',
     HEADER_SETTINGS_TITLE:'Cài đặt',
