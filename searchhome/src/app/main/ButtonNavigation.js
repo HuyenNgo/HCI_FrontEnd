@@ -141,14 +141,16 @@ const LocationStack = createStackNavigator({
 
 
 class ButtonNavigation extends Component {
+    constructor(props){
+        super(props)
+       
+        }
+    
     render() {
-        return <AppContainer />;
+        return <AppContainer  />;
     }
 }
 export default ButtonNavigation;
 
 
-const AppContainer = createAppContainer(LocationStack
-
-
-);
+const AppContainer = createAppContainer(LocationStack);

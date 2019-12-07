@@ -5,17 +5,23 @@ import Icon from '@expo/vector-icons/Ionicons';
 import icons from './../../base/config/icons'
 import colors from './../../base/config/colors'
 import strings from './../../base/config/strings'
+import cStyles from './../../base/styles/styles'
+
 //view
+//PAGE
+import SearchResultPage from './../pages/search/SearchResultPage'
+import LocationPage from './../pages/signroom/location'
+import DetailRoomPage from './../pages/home/DetailRoomPage'
+import DetailRoomatePage from './../pages/roomates/roomateDetail'
+import {
+    HomePage,
+    RoomatesPage,
+    SearchPage,
+    ProfilePage,
+    ChatPage
+} from '../pages'
 
-import 
-{HomePage,
-RoomatesPage,
-SearchPage,
-ProfilePage,
-ChatPage
- } from '../pages'
-
-import { AppHeader} from './../common/controls/header'
+import { AppHeader } from './../common/controls/header'
 
 import {
     createSwitchNavigator,
@@ -37,10 +43,85 @@ export default AppNavigation;
 
 const HomeStack = createStackNavigator(
     {
-        Home: HomePage,
-       
+        Home:
+        {
+            screen:HomePage,
+            navigationOptions: {
+                header:null
+            }
+        },
+        Location:
+        {
+            screen: LocationPage,
+            navigationOptions: {
+                tabBarVisible: false,
+                title: "Đăng phòng",
+
+                headerTitleStyle: {
+                    color: '#000',
+                    fontSize: 20,
+
+                    fontWeight: 'normal',
+                    alignItems: 'center',
+                    marginLeft: 120
+
+                },
+
+                headerRight: <Text style={cStyles.textheader}>Huỷ</Text>,
+                headerStyle: {
+                    backgroundColor: '#fff',
+
+                },
+
+            }
+        },
+         
+        DetailRoom:
+        {
+            screen:DetailRoomPage,
+            navigationOptions: {
+                tabBarVisible: false,
+                title: "Thông tin chi tiết phòng",
+
+                headerTitleStyle: {
+                    color: '#000',
+                    fontSize: 20,
+
+                    fontWeight: 'normal',
+                    alignItems: 'center',
+                    marginLeft: 120
+
+                },
+
+                headerRight: <Text style={cStyles.textheader}>Huỷ</Text>,
+                headerStyle: {
+                    backgroundColor: '#fff',
+
+                },
+
+            }
+        }
+
+
+
     }
-    ,{
+    // , {
+    //     defaultNavigationOptions: () => {
+    //         return {
+    //             header: null,
+
+    //         };
+    //     }
+    // }
+);
+
+const RoomateStack = createStackNavigator(
+    {
+        Home: RoomatesPage,
+        DetailRoomate:DetailRoomatePage,
+       
+    },
+    {
         defaultNavigationOptions: () => {
             return {
                 header: null
@@ -48,42 +129,26 @@ const HomeStack = createStackNavigator(
         }
     }
 );
-
-const RoomateStack = createStackNavigator(
-    {
-        Home: RoomatesPage,
-        
-
-    
-    }
-    // ,{
-    //     defaultNavigationOptions: () => {
-    //         return {
-    //             header: null
-    //         };
-    //     }
-    // }
-);
 const SearchStack = createStackNavigator(
     {
         Home: SearchPage,
-        
+        SearchResult: SearchResultPage,
 
-    
+
     }
-    // ,{
-    //     defaultNavigationOptions: () => {
-    //         return {
-    //             header: null
-    //         };
-    //     }
-    // }
+    , {
+        defaultNavigationOptions: () => {
+            return {
+                header: null
+            };
+        }
+    }
 );
 const ChatStack = createStackNavigator(
     {
         Home: ChatPage,
-        
-    
+
+
     }
     // ,{
     //     defaultNavigationOptions: () => {
@@ -96,9 +161,9 @@ const ChatStack = createStackNavigator(
 const ProfileStack = createStackNavigator(
     {
         Home: ProfilePage,
-       
 
-    
+
+
     }
     // ,{
     //     defaultNavigationOptions: () => {
@@ -115,57 +180,57 @@ const ProfileStack = createStackNavigator(
 const DashboardTabNavigator = createBottomTabNavigator(
     {
         PageHome: {
-            screen:HomeStack,
+            screen: HomeStack,
             navigationOptions: {
-                header:null,
-                tabBarLabel:strings.TAB_LABEL_HOME,
+                header: null,
+                tabBarLabel: strings.TAB_LABEL_HOME,
                 tabBarIcon: ({ tintColor }) => (<Icon
                     name={icons.home}
                     color={tintColor}
                     size={24} />)
-         
-                    
+
+
             }
-            
+
         },
         Roomates: {
-            screen:RoomateStack,
+            screen: RoomateStack,
             navigationOptions: {
-                header:null,
-                tabBarLabel:strings.TAB_LABEL_ROOMATES,
+                header: null,
+                tabBarLabel: strings.TAB_LABEL_ROOMATES,
                 tabBarIcon: ({ tintColor }) => (<Icon
                     name={icons.roomate}
                     color={tintColor}
                     size={24} />)
-                
+
             }
         },
         Search: {
             screen: SearchStack,
             navigationOptions: {
-                tabBarLabel:strings.TAB_LABEL_SEARCH,
+                tabBarLabel: strings.TAB_LABEL_SEARCH,
                 tabBarIcon: ({ tintColor }) => (<Icon
                     name={icons.search}
                     color={tintColor}
                     size={24} />)
             }
         },
-      Message: {
+        Message: {
             screen: ChatStack,
             navigationOptions: {
-                tabBarLabel:strings.TAB_LABEL_MESSAGE,
-               
+                tabBarLabel: strings.TAB_LABEL_MESSAGE,
+
                 tabBarIcon: ({ tintColor }) => (<Icon
                     name={icons.message}
                     color={tintColor}
-                    size={24} />)   
+                    size={24} />)
             }
         },
         Profile: {
             screen: ProfileStack,
             navigationOptions: {
-                tabBarLabel:strings.TAB_LABEL_PROFILE,
-               
+                tabBarLabel: strings.TAB_LABEL_PROFILE,
+
                 tabBarIcon: ({ tintColor }) => (<Icon
                     name={icons.profile}
                     color={tintColor}
@@ -175,30 +240,31 @@ const DashboardTabNavigator = createBottomTabNavigator(
 
     },
     {
-        navigationOptions: () => {
-           
+        navigationOptions: ({ navigation }) => {
+
             return {
-               header:null
-               
-            }; 
+                header: null,
+             
+
+            };
         },
-        initialLayout :{height:40},
+        initialLayout: { height: 40 },
         //lazy:true,
-        tabBarPosition:'bottom',
+        tabBarPosition: 'bottom',
         tabBarOptions: {
             activeTintColor: colors.ICON_ACTIVE_COLOR,
             inactiveTintColor: colors.ICON_COLOR,
-            style:{
-                backgroundColor:colors.WHITE,
-                height:60,
-                marginBottom:10
+            style: {
+                backgroundColor: colors.WHITE,
+                height: 60,
+                marginBottom: 10
             },
-            indicatorStyle:{
-                height:0
+            indicatorStyle: {
+                height: 0
             },
-            showIcon:true,
+            showIcon: true,
             swipeEnabled: true,
-           animationEnabled:true
+            animationEnabled: true
         }
     }
 );

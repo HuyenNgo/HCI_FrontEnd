@@ -6,6 +6,8 @@ import Location from './src/app/pages/signroom/location'
 import Information from './src/app/pages/signroom/information'
 import Confirm from './src/app/pages/signroom/confirm'
 import ButtonNavigation from './src/app/main/ButtonNavigation'
+import Utilities from './src/app/pages/signroom/utilities'
+import DetailRoomPage from './src/app/pages/home/DetailRoomPage'
 export default function App() {
   return (
     // <View style={{flex: 1,flexDirection:'column'}}>
@@ -14,9 +16,10 @@ export default function App() {
     // </View>
   
     
-          <AppNavigation
-          />
-       
+           <AppNavigation
+           />
+      // <ButtonNavigation/>
+    // < DetailRoomPage />
   );
 }
 

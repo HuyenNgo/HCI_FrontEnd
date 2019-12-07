@@ -1,37 +1,41 @@
 import React, { Component } from 'react'
 
 import BaseComponent from "./../../../base/components/BaseComponent";
+import ButtonNavigation from './../../main/ButtonNavigation'
 import { Header, Input, Button, Icon, CheckBox } from 'react-native-elements';
 import { SearchBar } from 'react-native-elements';
 import colors from '../../../base/config/colors';
 import { List, ListItem } from "react-native-elements"
-import { StyleSheet, Text, View, TextInput, ImageBackground, SafeAreaView, ScrollView, } from 'react-native'
+import { StyleSheet, Text, View, TextInput, ImageBackground, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native'
 import { Container, Thumbnail, Card, CardItem, Body, Left } from 'native-base';
 import RoomItem from './roomItem'
 import cStyle from './../../../base/styles/homeStyle'
+import * as _d from './../../common/data'
 import { FlatList, ButtonLoadMore } from './../../../base/controls';
+import metrics from './../../../base/config/metrics'
+
 export default class HomePage extends BaseComponent {
   constructor(props) {
     super(props);
     this.state = {
-      search:'',
-        number: 0,
-        dateValue: new Date(),
-        mockData: {
-            items: [],
-            currentPage: 1,
-            pageSize: 3,
-            pageCount: 2,
-           
-        },
-        isLoading:false
-        
-    }
-}
+      search: '',
+      number: 0,
+      dateValue: new Date(),
+      mockData: {
+        items: [],
+        currentPage: 1,
+        pageSize: 3,
+        pageCount: 2,
 
-componentDidMount(){
-  this.onRefresh()
-}
+      },
+      isLoading: false
+
+    }
+  }
+
+  componentDidMount() {
+    this.onRefresh()
+  }
   updateSearch = search => {
     this.setState({ search });
   };
@@ -44,15 +48,14 @@ componentDidMount(){
         ...this.state,
         mockData: {
           items: [...this.state.mockData.items,
-          { name: 'Căn hộ đường 34-Gần Lotte quận 7',type:'căn hộ', address:'Nguyễn Tư Giản, Gò Vấp',price: '2.3tr', avatar: 'https://tromoi.com/uploads/guest/o_1dr06j9idmugceg1u316pm102im.jpg' },
-          { name: 'Phòng cho thuê gần Phan Xích Long',type:'phòng cho thuê',address:'Hoài Thanh, Quận 8', price:'4.5tr', avatar: 'https://tromoi.com/uploads/guest/o_1dr06j9idmugceg1u316pm102im.jpg' },
+          ..._d.data
           ],
           currentPage: 2,
           pageCount: 2,
           pageSize: 8,
         },
         isLoading: false,
-        numColumns:2
+        numColumns: 2
 
       })
     }
@@ -65,19 +68,7 @@ componentDidMount(){
       this.setState({
         ...this.state,
         mockData: {
-          items: [
-            { name: 'Căn hộ đường 34-Gần Lotte quận 7',type:'căn hộ', address:'Nguyễn Tư Giản, Gò Vấp',price: '2.3tr',  avatar: 'https://tromoi.com/uploads/guest/o_1dr06j9idmugceg1u316pm102im.jpg'},
-            { name: 'Căn hộ đường 34-Gần Lotte quận 7',type:'căn hộ', address:'Nguyễn Tư Giản, Gò Vấp',price: '2.3tr',  avatar: 'https://tromoi.com/uploads/guest/o_1dr06j9idmugceg1u316pm102im.jpg' },
-            { name: 'Căn hộ đường 34-Gần Lotte quận 7',type:'căn hộ', address:'Nguyễn Tư Giản, Gò Vấp',price: '2.3tr',  avatar: 'https://tromoi.com/uploads/guest/o_1dr06j9idmugceg1u316pm102im.jpg' },
-            { name: 'Căn hộ đường 34-Gần Lotte quận 7',type:'căn hộ', address:'Nguyễn Tư Giản, Gò Vấp',price: '2.3tr',  avatar: 'https://tromoi.com/uploads/guest/o_1dr06j9idmugceg1u316pm102im.jpg' },
-            { name: 'Căn hộ đường 34-Gần Lotte quận 7',type:'căn hộ', address:'Nguyễn Tư Giản, Gò Vấp',price: '2.3tr',  avatar: 'https://tromoi.com/uploads/guest/o_1dr06j9idmugceg1u316pm102im.jpg' },
-            { name: 'Căn hộ đường 34-Gần Lotte quận 7',type:'căn hộ', address:'Nguyễn Tư Giản, Gò Vấp',price: '2.3tr',  avatar: 'https://cdn.luxstay.com/rooms/28922/medium/room_28922_338_1564807803.jpg' },
-            { name: 'Căn hộ đường 34-Gần Lotte quận 7',type:'căn hộ', address:'Nguyễn Tư Giản, Gò Vấp',price: '2.3tr',  avatar: 'https://cdn.luxstay.com/rooms/24805/medium/room_24805_4_1557578956.jpg' },
-            { name: 'Căn hộ đường 34-Gần Lotte quận 7',type:'căn hộ', address:'Nguyễn Tư Giản, Gò Vấp',price: '2.3tr',  avatar: 'https://cdn.luxstay.com/rooms/11819/medium/1537859121_IMG_1787.JPG' },
-            { name: 'Căn hộ đường 34-Gần Lotte quận 7',type:'căn hộ', address:'Nguyễn Tư Giản, Gò Vấp',price: '2.3tr',  avatar: 'https://cdn.luxstay.com/rooms/23625/medium/room_23625_169_1566978422.jpg' },
-            { name: 'Căn hộ đường 34-Gần Lotte quận 7',type:'căn hộ', address:'Nguyễn Tư Giản, Gò Vấp',price: '2.3tr',  avatar: 'https://cdn.luxstay.com/rooms/23625/medium/room_23625_169_1566978422.jpg' },
-            //{ name: 'Căn hộ đường 34-Gần Lotte quận 7',type:'căn hộ', address:'Nguyễn Tư Giản, Gò Vấp',price: '2.3tr',  avatar: 'https://cdn.luxstay.com/rooms/23625/medium/room_23625_169_1566978422.jpg' },
-          ],
+          items: [..._d.data],
           currentPage: 1,
           pageCount: 2,
           pageSize: 8,
@@ -87,76 +78,82 @@ componentDidMount(){
       })
     }
   }
-  renderItem = ({ item }) => {
+  _onPress(item) {
+    console.log('getItemHandle');
    
-    return (<RoomItem item={item} />)
+  }
+  renderItem = ({ item }) => {
+
+    return (
+      <TouchableOpacity  onPress={() => this._onPress(item)}>
+    <RoomItem item={item} />
+    </TouchableOpacity>
+    
+    
+    )
   }
 
   render() {
     const { search } = this.state;
-    const numColumns=2
-    const { number, dateValue, mockData, isLoading} = this.state
+    const numColumns = 2
+    const { number, dateValue, mockData, isLoading } = this.state
     const isLoadMore = this.canLoadMore(mockData)
     return (
       <Container>
-    
-        <View style={cStyle.stylesheader}>
-          <View style={cStyle.viewtab}>
 
+
+         
+
+          <Header
+            backgroundColor='#fff'
+            centerComponent={
             <SearchBar
-
-              placeholder="Type Here..."
-              onChangeText={this.updateSearch}
-              value={search}
-              platform='android'
-
-              containerStyle={{ backgroundColor: 'transparent', height: 45 }}
-
-            />
-          </View>
-          <View style={cStyle.styleViewButton}>
-            <Button
-              icon={
-                <Icon
-
-                  name='home'
-                  type='material'
-                  color='#4877F8'
-                />
-
-              }
-              buttonStyle={{
-                backgroundColor: '#FFFFFF',
-
-              }}
-              containerStyle={{ borderColor: '#4877F8', }}
-              type="clear"
-            />
-          </View>
-        </View>
-
-
-{/* 
-         <View style={cStyle.viewbody}>
-         </View> */}
-
-      
-            <FlatList
-              onRefresh={this.onRefresh}
-              
-              loading={isLoading}
-              numColumns={numColumns}
-              data={mockData.items}
-              renderItem={this.renderItem}
-              footerComponent={<ButtonLoadMore
-                isAbleToLoadMore={isLoadMore}
-                loading={isLoading}
+                lightTheme
+                containerStyle={{ width: metrics.DEVICE_WIDTH * 2 / 3 +90, padding:-5,backgroundColor: '#fff'}}
+                placeholder='Type here...'
+                platform='android'
+                leftComponentDisable={true}
                
-                onPress={this.onLoadMore.bind(this, isLoadMore)} />
-              } />
-             
-         </Container>
-      
+            />}
+            rightComponent={
+            <Button 
+            icon={
+              <Icon
+
+                name='home'
+                type='material'
+                color='#4877F8'
+                // onPress={() => this.props.navigation.navigate('Location')}
+               
+              />
+
+            } 
+            type="clear"
+            
+            onPress={() => this.props.navigation.navigate('Location')} />}
+          />
+        
+
+
+        
+
+
+        <FlatList
+          onRefresh={this.onRefresh}
+
+          loading={isLoading}
+          numColumns={numColumns}
+          data={mockData.items}
+          renderItem={this.renderItem}
+          footerComponent={<ButtonLoadMore
+            isAbleToLoadMore={isLoadMore}
+            loading={isLoading}
+
+            onPress={this.onLoadMore.bind(this, isLoadMore)} />
+          } />
+
+      </Container>
+
     )
   }
 }
@@ -185,7 +182,7 @@ const styles = StyleSheet.create({
 
   },
   scrollView: {
-    backgroundColor:'transparent',
+    backgroundColor: 'transparent',
     height: '100%'
   },
 

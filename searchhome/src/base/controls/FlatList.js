@@ -27,8 +27,7 @@ export default class FlatListCustom extends Component {
                     ListFooterComponent={footerComponent}
                     numColumns={numColumns?numColumns:1}
                     onEndReachedThreshold={0.5}
-                    
-         // onEndReached={onRefresh}
+     
                 />
                
             </SafeAreaView>
@@ -36,11 +35,3 @@ export default class FlatListCustom extends Component {
     }
 }
 
-// const styles = StyleSheet.create({
-//     buttonDefaultStyle: {
-//         width: 120,
-//         height: 40,
-//         backgroundColor: colors.DODGER_BLUE,
-//         margin: 5
-//     }
-// })
