@@ -8,10 +8,9 @@ import colors from '../../../base/config/colors';
 import { List, ListItem } from "react-native-elements"
 import { StyleSheet, Text, View, TextInput, ImageBackground, SafeAreaView, ScrollView, Image } from 'react-native'
 import { Container, Thumbnail, Card, CardItem, Body, Left } from 'native-base';
-import RoomItem from './roomItem'
+
 import cStyle from './../../../base/styles/homeStyle'
-import * as _d from './../../common/data'
-import { FlatList, ButtonLoadMore } from './../../../base/controls';
+
 import metrics from './../../../base/config/metrics'
 
 export default class DetailRoomPage extends BaseComponent {
@@ -33,61 +32,9 @@ export default class DetailRoomPage extends BaseComponent {
     }
   }
 
-  componentDidMount() {
-    this.onRefresh()
-  }
-  updateSearch = search => {
-    this.setState({ search });
-  };
-
-
-  onLoadMore = (isAbleToLoadMore) => {
-    if (isAbleToLoadMore) {
-      this.setState({ isLoading: true })
-      this.setState({
-        ...this.state,
-        mockData: {
-          items: [...this.state.mockData.items,
-          ..._d.data
-          ],
-          currentPage: 2,
-          pageCount: 2,
-          pageSize: 8,
-        },
-        isLoading: false,
-        numColumns: 2
-
-      })
-    }
-
-  }
-  onRefresh = () => {
-    if (true) {
-      // this.props.onFetchDataAsync(constants.PAGE_INDEX, constants.PAGE_SIZE, this.props.user.employeeId, true)
-      this.setState({ isLoading: true })
-      this.setState({
-        ...this.state,
-        mockData: {
-          items: [..._d.data],
-          currentPage: 1,
-          pageCount: 2,
-          pageSize: 8,
-        },
-        isLoading: false
-
-      })
-    }
-  }
-  renderItem = ({ item }) => {
-
-    return (<RoomItem item={item} />)
-  }
-
+  
   render() {
-    const { search } = this.state;
-    const numColumns = 2
-    const { number, dateValue, mockData, isLoading } = this.state
-    const isLoadMore = this.canLoadMore(mockData)
+   
     return (
       <Container>
         <Header
@@ -490,20 +437,7 @@ export default class DetailRoomPage extends BaseComponent {
 
             </View>
             <Text style={{ fontSize: 24, paddingBottom: '5%', paddingLeft: '5%' }}>Phòng tương tự</Text>
-            <FlatList
-              onRefresh={this.onRefresh}
-
-              loading={isLoading}
-              numColumns={numColumns}
-              data={mockData.items}
-              renderItem={this.renderItem}
-              footerComponent={<ButtonLoadMore
-                isAbleToLoadMore={isLoadMore}
-                loading={isLoading}
-
-                onPress={this.onLoadMore.bind(this, isLoadMore)} />
-              } />
-
+            
           </ScrollView>
         </SafeAreaView>
 
@@ -532,7 +466,7 @@ export default class DetailRoomPage extends BaseComponent {
 
             }}
             titleStyle={{ color: '#656565' }}
-            title="Nhắn tin"></Button>
+            title="Xoá"></Button>
           <Button
             containerStyle={{ paddingLeft: '5%', paddingBottom: '5%' }}
             buttonStyle={{
@@ -545,7 +479,7 @@ export default class DetailRoomPage extends BaseComponent {
 
             }}
             titleStyle={{ color: '#ffff' }}
-            title="Đặt ngay"></Button>
+            title="Chỉnh sửa"></Button>
         </View>
 
 

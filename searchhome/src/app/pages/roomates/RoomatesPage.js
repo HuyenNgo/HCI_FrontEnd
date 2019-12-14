@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View ,TouchableWithoutFeedback,TouchableOpacity } from 'react-native'
+import { Text, View ,TouchableOpacity } from 'react-native'
 import  BaseComponent from "../../../base/components/BaseComponent";
 import {Header,Button,Icon} from 'react-native-elements'
 import { FlatList,ButtonLoadMore} from '../../../base/controls';
@@ -96,8 +96,8 @@ export default class  RoomatesPage extends BaseComponent {
 
                 name='sort'
                 type='material'
-                color='#666666'
-                // onPress={() => this.props.navigation.navigate('Location')}
+                color='#4877F8'
+                onPress={() => this.props.navigation.navigate('Filter')}
                
               />
 

@@ -7,12 +7,24 @@ import colors from './../../base/config/colors'
 import strings from './../../base/config/strings'
 import cStyles from './../../base/styles/styles'
 
+
 //view
 //PAGE
+import {
+    Information,
+    Location,
+    Confirm,
+    Utilities
+} from './../pages/signroom'
 import SearchResultPage from './../pages/search/SearchResultPage'
-import LocationPage from './../pages/signroom/location'
+import FilterPage from './../pages/roomates/filter'
+import FilterSearchPage from './../pages/search/filterSearch'
 import DetailRoomPage from './../pages/home/DetailRoomPage'
 import DetailRoomatePage from './../pages/roomates/roomateDetail'
+import ChatDetailPage from './../pages/chat/ChatDetailPage'
+import DetailPage from './../pages/profile/detail'
+import PendingPage from './../pages/profile/PendingPage'
+import AccountPage from './../pages/profile/AccountPage'
 import {
     HomePage,
     RoomatesPage,
@@ -45,15 +57,16 @@ const HomeStack = createStackNavigator(
     {
         Home:
         {
-            screen:HomePage,
+            screen: HomePage,
             navigationOptions: {
-                header:null
+                header: null
             }
         },
         Location:
         {
-            screen: LocationPage,
+            screen: Location,
             navigationOptions: {
+
                 tabBarVisible: false,
                 title: "Đăng phòng",
 
@@ -66,7 +79,7 @@ const HomeStack = createStackNavigator(
                     marginLeft: 120
 
                 },
-
+                headerLeft: null,
                 headerRight: <Text style={cStyles.textheader}>Huỷ</Text>,
                 headerStyle: {
                     backgroundColor: '#fff',
@@ -75,13 +88,24 @@ const HomeStack = createStackNavigator(
 
             }
         },
-         
+
         DetailRoom:
         {
-            screen:DetailRoomPage,
+            screen: DetailRoomPage,
             navigationOptions: {
+                header: null,
                 tabBarVisible: false,
-                title: "Thông tin chi tiết phòng",
+                tabBarOptions: false,
+            },
+
+
+        },
+        Information:
+
+        {
+            screen: Information,
+            navigationOptions: {
+                title: "Đăng phòng",
 
                 headerTitleStyle: {
                     color: '#000',
@@ -89,22 +113,73 @@ const HomeStack = createStackNavigator(
 
                     fontWeight: 'normal',
                     alignItems: 'center',
-                    marginLeft: 120
+                    marginLeft: 70
 
                 },
 
-                headerRight: <Text style={cStyles.textheader}>Huỷ</Text>,
+                headerRight: <Text style={cStyles.textheader}  >Huỷ</Text>,
                 headerStyle: {
                     backgroundColor: '#fff',
 
                 },
 
             }
-        }
+        },
+        Utilities:
+
+        {
+            screen: Utilities,
+            navigationOptions: {
+                title: "Đăng phòng",
+
+                headerTitleStyle: {
+                    color: '#000',
+                    fontSize: 20,
+
+                    fontWeight: 'normal',
+                    alignItems: 'center',
+                    marginLeft: 70
+
+                },
+
+                headerRight: <Text style={cStyles.textheader} >Huỷ</Text>,
+                headerStyle: {
+                    backgroundColor: '#fff',
+
+                },
+
+
+            }
+        },
+
+        Confirm:
+        {
+            screen: Confirm,
+            navigationOptions: {
+                title: "Đăng phòng",
+
+                headerTitleStyle: {
+                    color: '#000',
+                    fontSize: 20,
+
+                    fontWeight: 'normal',
+                    alignItems: 'center',
+                    marginLeft: 70
+
+                },
+
+                headerRight: <Text style={cStyles.textheader}>Huỷ</Text>,
+                headerStyle: {
+                    backgroundColor: '#fff',
+                },
+
+            }
+        },
 
 
 
     }
+
     // , {
     //     defaultNavigationOptions: () => {
     //         return {
@@ -115,11 +190,28 @@ const HomeStack = createStackNavigator(
     // }
 );
 
+HomeStack.navigationOptions = ({ navigation }) => {
+
+    let tabBarVisible = true;
+
+    let routeName = navigation.state.routes[navigation.state.index].routeName
+
+    if (routeName == 'Location' || routeName == 'DetailRoom' || routeName == 'Confirm' || routeName == 'Utilities' || routeName == 'Information') {
+        tabBarVisible = false
+    }
+
+    return {
+        tabBarVisible,
+    }
+}
+
 const RoomateStack = createStackNavigator(
     {
         Home: RoomatesPage,
-        DetailRoomate:DetailRoomatePage,
-       
+        DetailRoomate: DetailRoomatePage,
+        Filter: FilterPage
+
+
     },
     {
         defaultNavigationOptions: () => {
@@ -133,7 +225,8 @@ const SearchStack = createStackNavigator(
     {
         Home: SearchPage,
         SearchResult: SearchResultPage,
-
+        DetailRoom: DetailRoomPage,
+        Filter: FilterSearchPage
 
     }
     , {
@@ -147,24 +240,54 @@ const SearchStack = createStackNavigator(
 const ChatStack = createStackNavigator(
     {
         Home: ChatPage,
-
+        Detail: ChatDetailPage
 
     }
-    // ,{
-    //     defaultNavigationOptions: () => {
-    //         return {
-    //             header: null
-    //         };
-    //     }
-    // }
+    , {
+        defaultNavigationOptions: () => {
+            return {
+                header: null
+            };
+        }
+    }
 );
 const ProfileStack = createStackNavigator(
     {
-        Home: ProfilePage,
-
-
-
+        Home:
+        {
+            screen: ProfilePage,
+            navigationOptions:
+            {
+                header:null
+            }
+        },
+        // Pending:
+        // {
+        //     screen: PendingPage,
+        //     navigationOptions:
+        //     {
+        //         header:null
+        //     }
+        // },
+        // Approved:
+        // {
+        //     screen: PendingPage,
+        //     navigationOptions:
+        //     {
+        //         header:null
+        //     }
+        // },
+        // Detail:
+        // {
+        //     screen:DetailPage,
+        //     navigationOptions:
+        //     {
+        //         header:null
+        //     }
+        // }
     }
+        
+    
     // ,{
     //     defaultNavigationOptions: () => {
     //         return {
@@ -244,7 +367,7 @@ const DashboardTabNavigator = createBottomTabNavigator(
 
             return {
                 header: null,
-             
+
 
             };
         },

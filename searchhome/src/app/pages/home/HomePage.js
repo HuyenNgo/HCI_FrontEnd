@@ -79,7 +79,8 @@ export default class HomePage extends BaseComponent {
     }
   }
   _onPress(item) {
-    console.log('getItemHandle');
+    this.props.navigation.navigate('DetailRoom'
+    );
    
   }
   renderItem = ({ item }) => {

@@ -22,8 +22,19 @@ export default class Location extends Component {
 
 
       <View style={{ flex: 1, backgroundColor: 'transparent' }}>
+         {/* <View style={{ flex: 1, backgroundColor: 'transparent' }}>
 
-        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'transparent', width: '100%', height: 100, padding: '5%' }}>
+          <Header
+            containerStyle={{ backgroundColor: '#fff',borderBottomColor:'black' ,borderBottomWidth:1}}
+           
+            leftContainerStyle={{ marginTop: 20 }}
+            centerComponent={{ text: 'Đăng phòng', style: { color: '#000', fontSize: 20, marginTop: 20 } }}
+            rightComponent={{ text: 'Huỷ', style: { color: '#F21212', fontSize: 20, paddingRight: '10%', marginTop: 20 } }}
+            
+          />
+        </View> */}
+
+        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'transparent', width: '100%', height: 100, padding: '5%',paddingTop:'10%' }}>
 
 
           <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between', width: 100, height: 50, backgroundColor: 'transparent', paddingLeft: '2%' }} >

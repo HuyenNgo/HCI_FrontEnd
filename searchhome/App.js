@@ -8,6 +8,7 @@ import Confirm from './src/app/pages/signroom/confirm'
 import ButtonNavigation from './src/app/main/ButtonNavigation'
 import Utilities from './src/app/pages/signroom/utilities'
 import DetailRoomPage from './src/app/pages/home/DetailRoomPage'
+import FilterPage from './src/app/pages/roomates/filter'
 export default function App() {
   return (
     // <View style={{flex: 1,flexDirection:'column'}}>
@@ -16,9 +17,9 @@ export default function App() {
     // </View>
   
     
-           <AppNavigation
-           />
-      // <ButtonNavigation/>
+            <AppNavigation
+          />
+        //<FilterPage/>
     // < DetailRoomPage />
   );
 }

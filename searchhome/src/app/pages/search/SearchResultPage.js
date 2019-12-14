@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, TextInput, ImageBackground, Text, View, Image } from 'react-native'
+import { StyleSheet, TextInput, ImageBackground, Text, View, Image, TouchableOpacity } from 'react-native'
 import BaseComponent from "../../../base/components/BaseComponent";
 import { Header, Input, Button, Icon, CheckBox } from 'react-native-elements';
 import { Container, Thumbnail, Card, CardItem, Body, Left } from 'native-base';
@@ -7,7 +7,7 @@ import styles from '../../../base/styles/search'
 import FlatList from '../../../base/controls/FlatList'
 import ButtonLoadMore from '../../../base/controls/ButtonLoadMore'
 import ResultItem from './resultItem'
-import  * as _d from '../../common/dataResult'
+import * as _d from '../../common/dataResult'
 export default class SearchResultPage extends BaseComponent {
 
     constructor(props) {
@@ -74,7 +74,12 @@ export default class SearchResultPage extends BaseComponent {
     }
     renderItem = ({ item }) => {
 
-        return (<ResultItem item={item} />)
+        return (
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailRoom')} >
+
+                <ResultItem item={item} />
+            </TouchableOpacity>
+        )
     }
 
 
@@ -89,7 +94,7 @@ export default class SearchResultPage extends BaseComponent {
         return (
             <Container>
 
-                <View style={{ flexDirection: 'column' ,marginBottom:20}}>
+                <View style={{ flexDirection: 'column', marginBottom: 20 }}>
 
                     <View style={styles.style1}>
 
@@ -103,12 +108,29 @@ export default class SearchResultPage extends BaseComponent {
                             <Text style={styles.titleText}>Gần bến xe miền Đông</Text>
                         </View>
                         <View >
-                            <Text style={styles.textHuy} >Huỷ</Text>
+                            <Text style={styles.textHuy} onPress={() => this.props.navigation.navigate('Home')} >Huỷ</Text>
                         </View>
                     </View>
 
-                    <View >
+                    <View style={{ flexDirection: 'row' }} >
                         <Text style={styles.style2} >Tìm thấy 100 điểm phù hợp</Text>
+                        <Button
+                            icon={
+                                <Icon
+
+                                    name='sort'
+                                    type='material'
+                                    color='#4877F8'
+                                    size={25}
+                                 onPress={() => this.props.navigation.navigate('Filter')}
+
+                                />
+
+                            }
+                            containerStyle={{paddingTop:'8%',paddingLeft:'16%'}}
+                            type="clear"
+                          
+                      />
                     </View>
 
                 </View>
