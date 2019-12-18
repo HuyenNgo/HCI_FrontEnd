@@ -54,7 +54,7 @@ export default class Confirm extends BaseComponent {
                             </View>
 
                             <View style={{ width: 100, height: 30, backgroundColor: 'transparent' }}>
-                                <Text style={{ color: '#0F389F' }}> Vị trí</Text>
+                                <Text > Vị trí</Text>
                             </View>
 
                         </View>
@@ -67,8 +67,8 @@ export default class Confirm extends BaseComponent {
                                     <Text style={{ color: 'rgba(18, 81, 242, 0.8)' }}>──</Text>
                                 </View>
 
-                                <View style={{ width: 25, height: 25, backgroundColor: 'transparent', paddingBottom: '20%' }}>
-                                    <ImageBackground source={require("./../../../..//assets/icons8-info-25-blue.png")}
+                                <View style={{ width: 20, height: 20, backgroundColor: 'transparent', marginBottom: 20 }}>
+                                    <ImageBackground source={require("./../../../..//assets/icons8-checkmark-25.png")}
                                         style={{ width: '100%', height: '100%', color: '#0F389F' }} />
 
                                 </View>
@@ -83,12 +83,12 @@ export default class Confirm extends BaseComponent {
                         </View>
 
                         <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between', width: 100, height: 50, backgroundColor: 'transparent', }} >
-                            <View style={{ flex: 1, flexDirection: 'row', width: 100, height: 20, backgroundColor: 'transparent' }} >
+                            <View style={{  flexDirection: 'row', width: 100, height: 20, backgroundColor: 'transparent' }} >
                                 <View style={{ width: 20, height: 20, backgroundColor: 'transparent' }} >
                                     <Text style={{ color: 'rgba(18, 81, 242, 0.8)' }}>──</Text>
                                 </View>
-                                <View style={{ width: 25, height: 25, backgroundColor: 'transparent', paddingBottom: '20%' }}>
-                                    <ImageBackground source={require("./../../../..//assets/icons8-full-image-25_blue.png")}
+                                <View style={{ width: 20, height: 20, backgroundColor: 'transparent', marginBottom: 20 }}>
+                                    <ImageBackground source={require("./../../../..//assets/icons8-checkmark-25.png")}
                                         style={{ width: '100%', height: '100%', justifyContent: 'center' }} />
                                 </View>
                                 <View style={{ width: 65, height: 20, backgroundColor: 'transparent' }} >
@@ -116,7 +116,7 @@ export default class Confirm extends BaseComponent {
                                 </View>
                             </View>
                             <View style={{ width: 100, height: 30, backgroundColor: 'transparent', }}>
-                                <Text style={{ marginLeft: 20 }}>Xác nhận</Text>
+                                <Text style={{ marginLeft: 20 ,color:'#4877F8'}} >Xác nhận</Text>
                             </View>
                         </View>
                     </View>

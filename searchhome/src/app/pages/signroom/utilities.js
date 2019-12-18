@@ -5,36 +5,68 @@ import { StyleSheet, Text, View, TextInput, ImageBackground, SafeAreaView, Scrol
 import { Font } from "expo";
 import { RadioButton } from 'react-native-paper';
 import cStyles from '../../../base/styles/styles'
-
-
-var radio_props = [
-    { label: 'Phòng cho thuê', value: 0 },
-    { label: 'Ký túc xá', value: 1 },
-    { label: 'Căn hộ', value: 2 },
-    { label: 'Chia sẻ phòng', value: 3 }
-];
-var radio_gioitinh = [
-    { label: 'Nam', value: 0 },
-    { label: 'Nữ', value: 1 },
-    { label: 'Tất cả', value: 2 },
-
-];
+import * as _d from './../../common/dataUtilities'
+import UtilitiesItem from './itemUtilities'
+import { Container } from 'native-base'
+import { FlatList, ButtonLoadMore } from './../../../base/controls'
 
 export default class Utilities extends BaseComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            status: 'first',
+            search: '',
+            number: 0,
+            dateValue: new Date(),
+            mockData: {
+                items: [],
+                currentPage: 1,
+                pageSize: 3,
+                pageCount: 2,
+
+            },
 
 
-    state = {
-        value: 'first',
-        checked_TD: false,
-        checked_TN: false,
-        checked_Wifi: false,
-        checked: false,
-    };
+        }
+    }
 
-    render() {
+    componentDidMount() {
+        this.onRefresh()
+
+    }
+    onRefresh = () => {
+        if (true) {
+            // this.props.onFetchDataAsync(constants.PAGE_INDEX, constants.PAGE_SIZE, this.props.user.employeeId, true)
+            this.setState({ isLoading: true })
+            this.setState({
+                ...this.state,
+                mockData: {
+                    items: [..._d.data],
+                    currentPage: 1,
+                    pageCount: 2,
+                    pageSize: 8,
+                },
+
+
+            })
+        }
+    }
+    renderItem = ({ item }) => {
+
         return (
 
-            <View style={{ flex: 1, backgroundColor: 'transparent', justifyContent: 'space-between', }}>
+
+            <UtilitiesItem item={item} />
+
+
+        )
+    }
+
+    render() {
+        const { number, dateValue, mockData } = this.state
+        return (
+
+            <Container >
                 {/* <View style={{ flex: 1, backgroundColor: 'transparent' }}>
 
                     <Header
@@ -56,7 +88,7 @@ export default class Utilities extends BaseComponent {
                     />
                 </View> */}
 
-                <View style={{ flex: 1, backgroundColor: 'transparent'}}>
+                <View style={{ backgroundColor: 'transparent', paddingBottom: '5%', marginBottom: 10 }}>
 
                     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'transparent', width: '100%', height: 100, padding: '5%' }}>
 
@@ -76,7 +108,7 @@ export default class Utilities extends BaseComponent {
                             </View>
 
                             <View style={{ width: 100, height: 30, backgroundColor: 'transparent' }}>
-                                <Text style={{ color: '#0F389F' }}> Vị trí</Text>
+                                <Text > Vị trí</Text>
                             </View>
 
                         </View>
@@ -89,8 +121,8 @@ export default class Utilities extends BaseComponent {
                                     <Text style={{ color: 'rgba(18, 81, 242, 0.8)' }}>──</Text>
                                 </View>
 
-                                <View style={{ width: 25, height: 25, backgroundColor: 'transparent', paddingBottom: '20%' }}>
-                                    <ImageBackground source={require("./../../../..//assets/icons8-info-25-blue.png")}
+                                <View style={{ width: 20, height: 20, backgroundColor: 'transparent', marginBottom: 20 }}>
+                                    <ImageBackground source={require("./../../../..//assets/icons8-checkmark-25.png")}
                                         style={{ width: '100%', height: '100%', color: '#0F389F' }} />
 
                                 </View>
@@ -118,7 +150,7 @@ export default class Utilities extends BaseComponent {
                                 </View>
                             </View>
                             <View style={{ width: 100, height: 30, backgroundColor: 'transparent', marginLeft: 10 }}>
-                                <Text>Hình ảnh</Text>
+                                <Text style={{ color: '#4877F8' }}>Hình ảnh</Text>
                             </View>
 
                         </View>
@@ -144,373 +176,110 @@ export default class Utilities extends BaseComponent {
 
                 </View>
 
-                <View style={{ flex: 10, backgroundColor: 'transparent', marginTop: 15 }}>
 
-                    <SafeAreaView style={styles.container}>
-                        <ScrollView style={styles.scrollView}>
-                            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-start' }}>
 
-                                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-start', width: '100%', height: 30, paddingLeft: '5%', paddingTop: '5%' }}>
+                <SafeAreaView style={styles.container}>
+                    <ScrollView style={styles.scrollView}>
 
-                                    <View style={{ width: '100%', height: 30 }}>
 
-                                        <Text style={styles.titleText}> Thông tin hình ảnh và tiện ích</Text>
-                                    </View>
 
-                                </View>
+                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-start', width: '100%', height: 30, paddingLeft: '5%', paddingTop: '5%' }}>
 
+                            <View style={{ width: '100%', height: 30 }}>
 
-                                <View style={{ flexDirection: 'column', justifyContent: 'flex-start', paddingLeft: '6%', width: '100%' }}>
-
-                                    <View style={{ width: '100%', height: 20, paddingTop: '8%' }}>
-
-                                        <Text style={{ fontSize: 13 }}> HÌNH ẢNH</Text>
-                                    </View>
-                                    <View style={cStyles.styleview}>
-                                        <View style={{ width: 50, height: 50 }}>
-                                            <ImageBackground source={require("./../../../..//assets/icons8-add-image-50.png")}
-                                                style={{ width: '100%', height: '100%', justifyContent: 'center' }} />
-                                        </View>
-                                        <View style={{ width: '50%' }}>
-                                            <Text>      Bấm vào để đăng   hình ảnh từ thư viện nhé</Text>
-                                        </View>
-                                    </View>
-                                    <View style={{ width: '100%', height: 100, paddingTop: '10%', paddingLeft: '10%' }}>
-                                        <Button
-                                            icon={
-                                                <Icon
-
-                                                    name='camera-alt'
-                                                    type='material'
-                                                    color='#4877F8'
-
-                                                    iconStyle={{ marginRight: 10 }}
-                                                />
-
-                                            }
-                                            iconLeft
-                                            title="Chụp hình"
-                                            buttonStyle={{
-                                                backgroundColor: '#FFFFFF',
-                                                borderColor: '#4877F8',
-                                                borderRadius: 10,
-
-                                            }}
-                                            containerStyle={{ borderColor: '#4877F8', width: 250 }}
-                                            titleStyle={{ color: '#4877F8' }}
-
-                                            type="outline"
-                                        />
-                                    </View>
-                                </View>
-
-                                <View style={{ flexDirection: 'column', justifyContent: 'flex-start', width: '100%' }}>
-
-                                    <View style={{ width: '100%', height: 20, paddingLeft: '6%', paddingTop: '5%' }}>
-
-                                        <Text style={{ fontSize: 13 }}> TIỆN ÍCH</Text>
-                                    </View>
-
-                                    <View style={{ flexDirection: 'column', justifyContent: 'flex-start' }} >
-                                        <View style={{
-                                            flexDirection: 'row',
-                                            justifyContent: 'space-between',
-                                            paddingTop: '10%',
-                                        }}>
-                                            <View style={{ width: '30%', height: 50, alignItems: 'center', marginLeft: 45 }}>
-                                                <Button
-                                                    icon={
-                                                        <Icon
-
-                                                            name='network-wifi'
-                                                            type='material'
-                                                            color='#4877F8'
-
-                                                            iconStyle={cStyles.iconStyle2}
-                                                        />
-
-                                                    }
-                                                    iconLeft
-                                                    title="Internet"
-                                                    buttonStyle={{
-                                                        backgroundColor: '#FFFFFF',
-                                                        borderColor: '#4877F8',
-                                                        borderRadius: 10,
-
-                                                    }}
-                                                    containerStyle={{ borderColor: '#4877F8', width: 150 }}
-                                                    titleStyle={{ color: '#4877F8' }}
-
-                                                    type="outline"
-                                                />
-                                            </View>
-
-                                            <View style={{ width: '30%', height: 50, alignItems: 'center', paddingBottom: '10%', marginLeft: 30, marginRight: 40 }}>
-                                                <Button
-                                                    icon={
-                                                        <Icon
-
-                                                            name='motorcycle'
-                                                            type='material'
-                                                            color='#4877F8'
-
-                                                            iconStyle={cStyles.iconStyle1}
-                                                        />
-
-                                                    }
-                                                    iconLeft
-                                                    title="Chỗ để xe"
-                                                    buttonStyle={{
-                                                        backgroundColor: '#FFFFFF',
-                                                        borderColor: '#4877F8',
-                                                        borderRadius: 10,
-
-                                                    }}
-                                                    containerStyle={{ borderColor: '#4877F8', width: 150 }}
-                                                    titleStyle={{ color: '#4877F8' }}
-
-                                                    type="outline"
-                                                />
-                                            </View>
-
-                                        </View>
-
-                                        <View style={cStyles.stylerow}>
-                                            <View style={{ width: '30%', height: 50, alignItems: 'center', marginLeft: 45 }}>
-                                                <Button
-                                                    icon={
-                                                        <Icon
-
-                                                            name='vpn-key'
-                                                            type='material'
-                                                            color='#C8C8C8'
-
-                                                            iconStyle={cStyles.iconStyle1}
-                                                        />
-
-                                                    }
-                                                    iconLeft
-                                                    title="Chung chủ"
-                                                    buttonStyle={cStyles.button1}
-                                                    containerStyle={{ borderColor: '#F5F5F5', width: 150 }}
-                                                    titleStyle={cStyles.titleStyle1}
-
-                                                    type="clear"
-                                                />
-                                            </View>
-
-                                            <View style={{ width: '30%', height: 50, alignItems: 'center', paddingBottom: '10%', marginLeft: 30, marginRight: 40 }}>
-                                                <Button
-                                                    icon={
-                                                        <Icon
-
-                                                            name='wc'
-                                                            type='material'
-                                                            color='#C8C8C8'
-
-                                                            iconStyle={cStyles.iconStyle2}
-                                                        />
-
-                                                    }
-                                                    iconLeft
-                                                    title="WC riêng"
-                                                    buttonStyle={cStyles.button1}
-                                                    containerStyle={{ borderColor: '#4877F8', width: 150 }}
-                                                    titleStyle={cStyles.titleStyle1}
-
-                                                    type="clear"
-                                                />
-                                            </View>
-
-                                        </View>
-                                        <View style={cStyles.stylerow}>
-                                            <View style={{ width: '30%', height: 50, alignItems: 'center', marginLeft: 45 }}>
-                                                <Button
-                                                    icon={
-                                                        <Icon
-
-                                                            name='room-service'
-                                                            type='material'
-                                                            color='#C8C8C8'
-
-                                                            iconStyle={cStyles.iconStyle2}
-                                                        />
-
-                                                    }
-                                                    iconLeft
-                                                    title="Có gác"
-                                                    buttonStyle={cStyles.button1}
-                                                    containerStyle={{ borderColor: '#4877F8', width: 150 }}
-                                                    titleStyle={cStyles.titleStyle1}
-
-                                                    type="clear"
-                                                />
-                                            </View>
-
-                                            <View style={{ width: '30%', height: 50, alignItems: 'center', paddingBottom: '10%', marginLeft: 30, marginRight: 40 }}>
-                                                <Button
-                                                    icon={
-                                                        <Icon
-
-                                                            name='security'
-                                                            type='material'
-                                                            color='#C8C8C8'
-
-                                                            iconStyle={cStyles.iconStyle2}
-                                                        />
-
-                                                    }
-                                                    iconLeft
-                                                    title="An ninh"
-                                                    buttonStyle={cStyles.button1}
-                                                    containerStyle={{ borderColor: '#4877F8', width: 150 }}
-                                                    titleStyle={cStyles.titleStyle1}
-
-                                                    type="clear"
-                                                />
-                                            </View>
-
-                                        </View>
-                                        <View style={cStyles.stylerow}>
-                                            <View style={{ width: '30%', height: 50, alignItems: 'center', marginLeft: 45 }}>
-                                                <Button
-                                                    icon={
-                                                        <Icon
-
-                                                            name='airplay'
-                                                            type='material'
-                                                            color='#C8C8C8'
-
-                                                            iconStyle={cStyles.iconStyle1}
-                                                        />
-
-                                                    }
-                                                    iconLeft
-                                                    title="Máy lạnh"
-                                                    buttonStyle={cStyles.button1}
-                                                    containerStyle={{ borderColor: '#4877F8', width: 150 }}
-                                                    titleStyle={cStyles.titleStyle1}
-
-                                                    type="clear"
-                                                />
-                                            </View>
-
-                                            <View style={{ width: '30%', height: 50, alignItems: 'center', paddingBottom: '10%', marginLeft: 30, marginRight: 40 }}>
-                                                <Button
-                                                    icon={
-                                                        <Icon
-
-                                                            name='pets'
-                                                            type='material'
-                                                            color='#C8C8C8'
-
-                                                            iconStyle={cStyles.iconStyle1}
-                                                        />
-
-                                                    }
-                                                    iconLeft
-                                                    title="Thú cưng"
-                                                    buttonStyle={cStyles.button1}
-                                                    containerStyle={{ borderColor: '#4877F8', width: 150 }}
-                                                    titleStyle={cStyles.titleStyle1}
-
-                                                    type="clear"
-                                                />
-                                            </View>
-
-                                        </View>
-                                        <View style={cStyles.stylerow}>
-                                            <View style={{ width: '30%', height: 50, alignItems: 'center', marginLeft: 45 }}>
-                                                <Button
-                                                    icon={
-                                                        <Icon
-
-                                                            name='hotel'
-                                                            type='material'
-                                                            color='#C8C8C8'
-
-                                                            iconStyle={{ marginRight: 10 }}
-                                                        />
-
-                                                    }
-                                                    iconLeft
-                                                    title="Có giường"
-                                                    buttonStyle={cStyles.button1}
-                                                    containerStyle={{ borderColor: '#4877F8', width: 150 }}
-                                                    titleStyle={cStyles.titleStyle1}
-
-                                                    type="clear"
-                                                />
-                                            </View>
-
-                                            <View style={{ width: '30%', height: 50, alignItems: 'center', marginLeft: 30, marginRight: 40 }}>
-                                                <Button
-                                                    icon={
-                                                        <Icon
-
-                                                            name='kitchen'
-                                                            type='material'
-                                                            color='#C8C8C8'
-
-                                                            iconStyle={cStyles.iconStyle2}
-                                                        />
-
-                                                    }
-                                                    iconLeft
-                                                    title="Tủ lạnh"
-                                                    buttonStyle={cStyles.button1}
-                                                    containerStyle={{ borderColor: '#4877F8', width: 150 }}
-                                                    titleStyle={cStyles.titleStyle1}
-
-                                                    type="clear"
-                                                />
-                                            </View>
-
-                                        </View>
-                                    </View>
-
-                                    <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-start', paddingTop: '10%', paddingLeft: '6%' }}>
-
-                                        <View style={{ width: '100%', height: 100, paddingRight: '10%', paddingBottom: '10%' }}>
-                                            <Button
-                                                icon={
-                                                    <Icon
-
-                                                        name='arrow-forward'
-                                                        type='material'
-                                                        color='#4877F8'
-                                                        iconStyle={{ marginLeft: 60 }}
-                                                    />
-
-                                                }
-                                                iconRight
-                                                title="Tiếp theo"
-                                                buttonStyle={{
-                                                    backgroundColor: '#FFFFFF',
-                                                    borderColor: '#4877F8',
-                                                    borderRadius: 10,
-
-                                                }}
-                                                containerStyle={{ borderColor: '#4877F8', }}
-                                                titleStyle={{ color: '#4877F8' }}
-
-                                                type="outline"
-                                                onPress={() => this.props.navigation.navigate('Confirm')}
-                                            />
-                                        </View>
-                                    </View>
-
-                                </View>
+                                <Text style={styles.titleText}> Thông tin hình ảnh và tiện ích</Text>
                             </View>
 
-                        </ScrollView>
-                    </SafeAreaView>
-                </View>
+                        </View>
 
+                        <View style={{ flexDirection: 'column', justifyContent: 'flex-start', paddingLeft: '6%', width: '100%' }}>
 
+                            <View style={{ width: '100%', height: 20, paddingTop: '8%' }}>
 
+                                <Text style={{ fontSize: 13 }}> HÌNH ẢNH</Text>
+                            </View>
+                            <View style={cStyles.styleview}>
+                                <View style={{ width: 50, height: 50 }}>
+                                    <ImageBackground source={require("./../../../..//assets/icons8-add-image-50.png")}
+                                        style={{ width: '100%', height: '100%', justifyContent: 'center' }} />
+                                </View>
+                                <View style={{ width: '50%' }}>
+                                    <Text>      Bấm vào để đăng   hình ảnh từ thư viện nhé</Text>
+                                </View>
+                            </View>
+                        </View>
+                        <View style={{ width: '100%', height: 80, paddingTop: '5%', paddingLeft: '10%', marginLeft: 20 }}>
+                            <Button
+                                icon={
+                                    <Icon
 
-            </View>
+                                        name='camera-alt'
+                                        type='material'
+                                        color='#4877F8'
+
+                                        iconStyle={{ marginRight: 10 }}
+                                    />
+
+                                }
+                                iconLeft
+                                title="Chụp hình"
+                                buttonStyle={{
+                                    backgroundColor: '#FFFFFF',
+                                    borderColor: '#4877F8',
+                                    borderRadius: 10,
+
+                                }}
+                                containerStyle={{ borderColor: '#4877F8', width: 250 }}
+                                titleStyle={{ color: '#4877F8' }}
+
+                                type="outline"
+                            />
+                        </View>
+                        <View style={{ width: '100%', height: 20, paddingLeft: '6%', paddingTop: '5%' }}>
+
+                            <Text style={{ fontSize: 13 }}> TIỆN ÍCH</Text>
+                        </View>
+
+                        <FlatList
+                            numColumns={2}
+                            data={mockData.items}
+                            renderItem={this.renderItem}
+                        />
+
+                        <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-start', paddingTop: '10%', paddingLeft: '6%' }}>
+
+                            <View style={{ width: '100%', height: 100, paddingRight: '10%', paddingBottom: '10%' }}>
+                                <Button
+                                    icon={
+                                        <Icon
+
+                                            name='arrow-forward'
+                                            type='material'
+                                            color='#4877F8'
+                                            iconStyle={{ marginLeft: 60 }}
+                                        />
+
+                                    }
+                                    iconRight
+                                    title="Tiếp theo"
+                                    buttonStyle={{
+                                        backgroundColor: '#FFFFFF',
+                                        borderColor: '#4877F8',
+                                        borderRadius: 10,
+
+                                    }}
+                                    containerStyle={{ borderColor: '#4877F8', }}
+                                    titleStyle={{ color: '#4877F8' }}
+
+                                    type="outline"
+                                    onPress={() => this.props.navigation.navigate('Confirm')}
+                                />
+                            </View>
+                        </View>
+                    </ScrollView>
+                </SafeAreaView>
+
+            </Container>
 
 
 
@@ -537,7 +306,7 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         backgroundColor: 'transparent',
-        height: '100%'
+
     },
 
 });

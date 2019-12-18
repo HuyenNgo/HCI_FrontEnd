@@ -66,7 +66,7 @@ export default class Information extends BaseComponent {
               </View>
 
               <View style={{ width: 100, height: 30, backgroundColor: 'transparent' }}>
-                <Text style={{ color: '#0F389F' }}> Vị trí</Text>
+                <Text > Vị trí</Text>
               </View>
 
             </View>
@@ -89,7 +89,7 @@ export default class Information extends BaseComponent {
                 </View>
               </View>
               <View style={{ width: 100, height: 30, backgroundColor: 'transparent' }}>
-                <Text>Thông tin</Text>
+                <Text style={{color:'#4877F8'}}>Thông tin</Text>
               </View>
 
             </View>

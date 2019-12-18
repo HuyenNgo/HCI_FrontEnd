@@ -37,13 +37,12 @@ export default class ProfilePage extends BaseComponent {
 
     return (
       <Container>
-        {this.state.visible == true ? <Header
+        <Header
 
           containerStyle={{ backgroundColor: '#fff' }}
           centerComponent={{ text: 'Tài khoản', style: { color: '#000', fontSize: 20 } }}
-          rightComponent={{ icon: 'home', color: '#000' }}
-        /> : <View></View>}
-
+         // rightComponent={{ icon: 'home', color: '#000' }}
+       />
         <AppContainer />
         
       </Container>

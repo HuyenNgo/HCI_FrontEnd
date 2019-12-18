@@ -1,68 +1,78 @@
-import React from 'react';
-import { Text, View, Image ,StyleSheet, TouchableOpacity,TouchableHighlight} from 'react-native';
+import React,{Component} from 'react';
+import { Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-elements'
 import { ListItem, Thumbnail, Card, CardItem, Body, Left } from 'native-base';
-const DistrictItem = (params) => {
-    
-        state = {
+export default class DistrictItem extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
             styletext: styles.tiltle,
-            styleButton:styles.stylebutton
-          };
-         
-    
-    return (
-        < TouchableHighlight onPress={() =>  this.setState({ styletext: styles.tiltleClick })}>
-       
-            <View style={{ paddingLeft: '3%'}}>
-                
-                <Button
-                
-                   type='outline'
-                    title={params.item.name}
-                    titleStyle={this.state.styletext}
-                    containerStyle={{marginTop:10}}
-                    buttonStyle={this.state.styleButton}
-                    //onPress={() =>  this.setState({ styletext: styles.tiltleClick })}
-                />
+            styleButton: styles.stylebutton,
+            styleButtonClick: styles.styleButtonClick,
+            styletextClick: styles.tiltleClick,
+            value:false
+
+        }
+    }
+  
+
+    render() {
+        const { item } = this.props
+        return (
            
-        </View>
-      </TouchableHighlight>
-    )
+
+                <View style={{ paddingLeft: '4%' }}>
+
+                    <Button
+
+                        type='outline'
+                        title={item.name}
+                        titleStyle={this.state.value==false ? this.state.styletext : this.state.styletextClick}
+                        containerStyle={{ marginTop: 10 }}
+                        buttonStyle={this.state.value==false ? this.state.styleButton : this.state.styleButtonClick}
+                    onPress={() =>  this.setState({ value:!this.state.value })}
+                    />
+
+                </View>
+            
+        )
+    }
 };
 
-export default DistrictItem;
 
 
-const styles=StyleSheet.create({
+
+const styles = StyleSheet.create({
 
     stylebutton:
     {
-        borderColor:'#B7B7B7',
-        borderWidth:1,
-        borderRadius:20,
-        marginTop:10,
-        width:100,
-        height:35
+        borderColor: '#B7B7B7',
+        borderWidth: 1,
+        borderRadius: 20,
+        marginTop: 10,
+        width: 98,
+        height: 35
     },
     tiltle:
     {
-        fontSize:13,
-        color:'#B7B7B7'
+        fontSize: 13,
+        color: '#B7B7B7'
     },
     styleButtonClick:
     {
-        
-        borderColor:'#4877F8',
-        borderWidth:1,
-        borderRadius:20,
-        marginTop:10,
-        width:100,
-        height:35
+
+        borderColor: '#4877F8',
+        borderWidth: 1,
+        borderRadius: 20,
+        marginTop: 10,
+        width: 98,
+        height: 35
     },
     tiltleClick:
     {
-        fontSize:13,
-        color:'#4877F8'
+        fontSize: 13,
+        color: '#4877F8'
     },
 
 

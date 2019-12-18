@@ -43,7 +43,7 @@ export default class Location extends Component {
               </View>
 
               <View style={{ width: 20, height: 20, backgroundColor: 'transparent', marginBottom: 20 }}>
-                <ImageBackground source={require("./../../../..//assets/icons8-checkmark-25.png")}
+                <ImageBackground source={require("./../../../..//assets/C.png")}
                   style={{ width: '100%', height: '100%', justifyContent: 'center' }} />
               </View>
               <View style={{ width: 70, height: 20, backgroundColor: 'transparent' }} >
@@ -52,7 +52,7 @@ export default class Location extends Component {
             </View>
 
             <View style={{ width: 100, height: 30, backgroundColor: 'transparent' }}>
-              <Text style={{ borderColor: '#d6d7da' }}> Vị trí</Text>
+              <Text style={{ borderColor: '#d6d7da',color:'#4877F8' }}> Vị trí</Text>
             </View>
 
           </View>

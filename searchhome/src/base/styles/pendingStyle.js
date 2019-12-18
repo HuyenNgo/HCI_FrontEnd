@@ -8,19 +8,19 @@ imageStyle:
  
 paddingBottom:'4%',
 
-paddingLeft:'3%',
+
  marginBottom:20,
- marginLeft:5,
- flexDirection:'row'
+ 
+ flexDirection:'row',
+ justifyContent:'space-between'
   
 },
 styleview1:
 {
  
-width:300,
-paddingLeft:'5%',
-paddingRight:'25%',
-marginRight:20,
+
+paddingLeft:'1%',
+width:160,
 flexDirection:'column',
 justifyContent:'flex-start'
  
@@ -32,7 +32,7 @@ textStyle1:
         fontSize:13,
         color:'#BFBFBF',
         fontWeight:'normal',
-        marginTop:15
+        
     },
     textNameStyle1:
     {
@@ -49,6 +49,15 @@ textStyle1:
 
         fontSize:14,
         color:'#F73486',
+        marginTop:5,
+        fontWeight:'bold',
+        //paddingLeft:'30%'
+    },
+    textPrice2:
+    {
+
+        fontSize:14,
+        color:'#4877F8',
         marginTop:5,
         fontWeight:'bold',
         //paddingLeft:'30%'

@@ -10,53 +10,55 @@ import constants from './../../../base/config/constants'
 
 import React, { Component } from 'react';
 
-export default class PendingItem  extends Component {
+export default class PendingItem extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-          status:false,
-         
+            status: false,
+
         }
-      }
-  render() {
-      const {item} = this.props
-    return (
-        <View style={cStyle.imageStyle}
-        // style={{ height: 300 }}
-        >
+    }
+    render() {
+        const { item } = this.props
+        return (
+            <View style={cStyle.imageStyle}
+            // style={{ height: 300 }}
+            >
 
-            <View >
-                <Thumbnail square source={{
-                    uri: item.avatar ? item.avatar : constants.NO_IMAGE_LINK
-                }}
-                    style={{ width: 120, height: 110, borderRadius: 6 }}
+                <View >
+                    <Thumbnail square source={{
+                        uri: item.avatar ? item.avatar : constants.NO_IMAGE_LINK
+                    }}
+                        style={{ width: 100, height: 90, borderRadius: 6 }}
 
-                // style={{ height: 300 }}
-                // onPress={() => console.log('getItemHandle')} 
-                />
+                    // style={{ height: 300 }}
+                    // onPress={() => console.log('getItemHandle')} 
+                    />
+                </View>
+                <View style={cStyle.styleview1}>
+                    <View style={{ flexDirection: 'row' }}>
+
+                        <Text style={cStyle.textStyle1}>{item.type}</Text>
+
+                    </View>
+                    <Text style={cStyle.textNameStyle1}>{item.name}</Text>
+
+                    <Text note numberOfLines={1} style={cStyle.textPrice1}>{item.price}</Text>
+                    <Text style={cStyle.textAddress1}>{item.address}</Text>
+
+
+                </View>
+                <View  style={{paddingLeft:'1%'}}>
+                    <CheckBox
+                        containerStyle={{ paddingTop: '20%',marginLeft:5 }}
+                        checked={this.state.status}
+                        size={20}
+                        onPress={() => this.setState({ status: !this.state.status })}
+                    />
+                </View>
             </View>
-            <View style={cStyle.styleview1}>
-                <View style={{flexDirection:'row'}}>
-
-                <Text style={cStyle.textStyle1}>{item.type}</Text>
-                <CheckBox
-                    containerStyle={{marginLeft:50}}
-                    checked={this.state.status}
-                    size={20}
-                    onPress={()=> this.setState({status:!this.state.status})}
-                />
-             </View>
-                <Text style={cStyle.textNameStyle1}>{item.name}</Text>
-
-                <Text note numberOfLines={1} style={cStyle.textPrice1}>{item.price}</Text>
-                <Text style={cStyle.textAddress1}>{item.address}</Text>
-        
-               
-            </View>
-           
-        </View>
-    );
-  }
+        );
+    }
 }
 

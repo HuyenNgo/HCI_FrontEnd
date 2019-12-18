@@ -3,7 +3,7 @@ import { Text, View, Image ,StyleSheet} from 'react-native';
 import { Button, Icon } from 'react-native-elements'
 import { ListItem, Thumbnail, Card, CardItem, Body, Left } from 'native-base';
 
-export default class UtilitiesItem extends Component {
+export default class ItemUtilities extends Component {
 
     constructor(props) {
         super(props);
@@ -62,9 +62,9 @@ const styles = StyleSheet.create({
     {
         borderColor: '#B7B7B7',
         borderWidth: 1,
-        borderRadius: 20,
+        borderRadius: 10,
         marginTop: 10,
-        width: 98,
+        width: 150,
         height: 35
     },
     tiltle:
@@ -77,9 +77,9 @@ const styles = StyleSheet.create({
 
         borderColor: '#4877F8',
         borderWidth: 1,
-        borderRadius: 20,
+        borderRadius: 10,
         marginTop: 10,
-        width: 98,
+        width: 150,
         height: 35
     },
     tiltleClick:
